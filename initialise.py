@@ -7,4 +7,4 @@ class StartDb:
         self.username = username
         self.password = password
 
-    def
+    def start(self):
