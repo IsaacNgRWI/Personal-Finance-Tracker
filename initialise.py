@@ -1,5 +1,6 @@
 import pymongo
 from pymongo.server_api import ServerApi
+from datetime import datetime
 import passwords as pw
 
 class User:
@@ -20,17 +21,17 @@ class User:
             self.database1 = client[database_name]
             print("----------------------------------------------")
         except Exception as e:
-            print(e)
+            print(f"An error has occurred: {e}")
 
     def add_collection(self, collection_name):
         try:
             self.collection1 = self.database1[collection_name]
         except Exception as e:
-            print(e)
+            print(f"An error has occurred: {e}")
 
     def add_record_one(self, item_name, item_price, item_cat):
         try:
-            self.collection1.insert_one({"Item" : item_name, "Price" : item_price, "Category" : item_cat})
-            print(f"{item_name} successfully added.")
+            self.collection1.insert_one({"Item" : str(item_name), "Price" : float(item_price), "Category" : str(item_cat), "Date" : datetime.now()})
+            print(f"{item_name} successfully added at {datetime.now()}")
         except Exception as e:
-            print(e)
+            print(f"An error has occurred: {e}")
