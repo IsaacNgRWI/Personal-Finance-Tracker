@@ -24,6 +24,13 @@ class User:
 
     def add_collection(self, collection_name):
         try:
-            collection = self.database1[collection_name]
+            self.collection1 = self.database1[collection_name]
+        except Exception as e:
+            print(e)
+
+    def add_record_one(self, item_name, item_price, item_cat):
+        try:
+            self.collection1.insert_one({"Item" : item_name, "Price" : item_price, "Category" : item_cat})
+            print(f"{item_name} successfully added.")
         except Exception as e:
             print(e)
