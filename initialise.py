@@ -2,7 +2,7 @@ import pymongo
 from pymongo.server_api import ServerApi
 import passwords as pw
 
-class Start:
+class User:
     def __init__(self, username=pw.username, password=pw.password):
         self.username = username
         self.password = password
