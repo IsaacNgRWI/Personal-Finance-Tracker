@@ -64,14 +64,14 @@ class User:
             if amount > 1:
                 print("The number of records requested cannot be less than 1")
             elif amount is None:
+                print("Returning all purchases that match description")
                 for i in self.collection1.find({"item_name": name}).sort(sort):
                     counter += 1
-                    print("Returning all purchases that match description")
                     print(f"{counter}. {i}")
             else:
+                print(f"Returning {amount} purchases matching that description")
                 for i in self.collection1.find({"item_name" : name}).sort(sort).limit(int(amount)):
                     counter += 1
-                    print(f"Returning {amount} purchases matching that description")
                     print(f"{counter}. {i}")
         except Exception as e:
             print(f"An error has occurred: {e}")
@@ -83,21 +83,21 @@ class User:
                 print("The number of records requested cannot be less than 1")
             elif amount is None and gt_or_st is not None:
                 if gt_or_st == "greater":
+                    print(f"Returning all purchases priced at over {price} pounds")
                     for i in self.collection1.find({"item_price": {"$gt" : float(price)}}).sort(sort):
-                        print(f"Returning all purchases priced at over {price} pounds")
                         print(f"{counter}. {i}")
                 else:
+                    print(f"Returning all purchases priced at under {price} pounds")
                     for i in self.collection1.find({"item_price": {"$st": float(price)}}).sort(sort):
-                        print(f"Returning all purchases priced at under {price} pounds")
                         print(f"{counter}. {i}")
             elif amount is not None and gt_or_st is not None:
                 if gt_or_st == "greater":
+                    print(f"Returning all purchases priced at over {price} pounds")
                     for i in self.collection1.find({"item_price": {"$gt": float(price)}}).sort(sort).limit(int(amount)):
-                        print(f"Returning all purchases priced at over {price} pounds")
                         print(f"{counter}. {i}")
                 else:
+                    print(f"Returning all purchases priced at under {price} pounds")
                     for i in self.collection1.find({"item_price": {"$st": float(price)}}).sort(sort).limit(int(amount)):
-                        print(f"Returning all purchases priced at under {price} pounds")
                         print(f"{counter}. {i}")
         except Exception as e:
             print(f"An error has occurred: {e}")
