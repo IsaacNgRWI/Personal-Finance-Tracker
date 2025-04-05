@@ -101,3 +101,19 @@ class User:
                         print(f"{counter}. {i}")
         except Exception as e:
             print(f"An error has occurred: {e}")
+
+    def query_by_cat(self, cat, amount=None, sort=-1):
+        counter = 0
+        try:
+            if amount > 1:
+                print("The number of records requested cannot be less than 1")
+            elif amount is None:
+                print(f"Returning all purchases in {cat} category")
+                for i in self.collection1.find({"item_cat" : cat}).sort(sort):
+                    print(f"{counter}. {i}")
+            elif amount is not None:
+                print(f"Returning {amount} purchases in {cat} category")
+                for i in self.collection1.find({"item_cat" : cat}).sort(sort).limit(int(amount)):
+                    print(f"{counter}. {i}")
+        except Exception as e:
+            print(f"An error has occured: {e}")
